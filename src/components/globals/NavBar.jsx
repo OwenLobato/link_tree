@@ -84,8 +84,8 @@ export const NavBar = () => {
                 </Link>
               </li>
               <li>
-                <Link to='/register' className={getLinkClassName('/register')}>
-                  Register
+                <Link to='/apply' className={getLinkClassName('/apply')}>
+                  Apply
                 </Link>
               </li>
             </ul>
