@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from '../../../styles/apply.module.css';
+import useAuth from '../../../hooks/useAuth';
 
 export const Apply = () => {
+  const { register } = useAuth();
+
   const initialUserData = {
     username: '',
     email: '',
@@ -29,10 +32,19 @@ export const Apply = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (!userData.category) return toast.error('Add a category');
     console.log('DATA:', userData);
-    setUserData(initialUserData);
-    toast('You are registered successfully');
+    const { username, email, password, category } = userData;
+
+    if (!category) return toast.error('Add a category');
+
+    register(username, email, password, category)
+      .then((res) => {
+        toast.success(res.data.message);
+        setUserData(initialUserData);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
   };
 
   return (
