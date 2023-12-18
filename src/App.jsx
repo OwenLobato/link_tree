@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { NavBar, PrivateRoute } from './components/globals';
+import { NavBar, Footer, PrivateRoute } from './components/globals';
 import { PublicAppRoutes, AppRoutes } from './routes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,6 +24,7 @@ const App = () => {
             />
           ))}
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
