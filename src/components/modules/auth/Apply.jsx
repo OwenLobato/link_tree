@@ -1,19 +1,38 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from '../../../styles/apply.module.css';
 
 export const Apply = () => {
-  const [category, setCategory] = useState('');
+  const initialUserData = {
+    username: '',
+    email: '',
+    password: '',
+    category: '',
+  };
+  const [userData, setUserData] = useState(initialUserData);
+
+  const handleData = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [name]: value,
+    }));
+  };
 
   const handleCategoryChange = (e) => {
-    setCategory(e.target.name);
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      category: e.target.name,
+    }));
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (!category) return toast.error('Add a category');
+    if (!userData.category) return toast.error('Add a category');
+    console.log('DATA:', userData);
+    setUserData(initialUserData);
     toast('You are registered successfully');
-    console.log('You are registered successfully');
   };
 
   return (
@@ -37,6 +56,9 @@ export const Apply = () => {
               <img className='w-6 mr-2' src='/svgs/insta.svg' alt='IG' />
               <input
                 type='text'
+                name='username'
+                value={userData.username}
+                onChange={handleData}
                 placeholder='Username'
                 className='focus:outline-none w-full'
                 required
@@ -44,12 +66,18 @@ export const Apply = () => {
             </span>
             <input
               type='email'
+              name='email'
+              value={userData.email}
+              onChange={handleData}
               placeholder='Enter your email'
               className='shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'
               required
             />
             <input
               type='password'
+              name='password'
+              value={userData.password}
+              onChange={handleData}
               placeholder='Set a password'
               className='shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'
               required
@@ -63,7 +91,7 @@ export const Apply = () => {
                 <input
                   name='Creator'
                   type='checkbox'
-                  checked={category === 'Creator'}
+                  checked={userData.category === 'Creator'}
                   onChange={handleCategoryChange}
                 />
                 <p className='pl-2'>Creator</p>
@@ -72,7 +100,7 @@ export const Apply = () => {
                 <input
                   name='Agency'
                   type='checkbox'
-                  checked={category === 'Agency'}
+                  checked={userData.category === 'Agency'}
                   onChange={handleCategoryChange}
                 />
                 <p className='pl-2'>Agency</p>
@@ -81,7 +109,7 @@ export const Apply = () => {
                 <input
                   name='Brand'
                   type='checkbox'
-                  checked={category === 'Brand'}
+                  checked={userData.category === 'Brand'}
                   onChange={handleCategoryChange}
                 />
                 <p className='pl-2'>Brand</p>
@@ -94,6 +122,12 @@ export const Apply = () => {
             />
           </form>
         </div>
+        <h4 className='text-center text-white pt-3'>
+          Already have an account?
+          <Link to='/' className='font-bold text-red-400 ml-2'>
+            Login
+          </Link>
+        </h4>
       </div>
     </section>
   );
