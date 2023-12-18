@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from '../../../styles/apply.module.css';
 import useAuth from '../../../hooks/useAuth';
 
 export const Apply = () => {
+  const navigate = useNavigate();
   const { register } = useAuth();
 
   const initialUserData = {
@@ -32,7 +33,6 @@ export const Apply = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log('DATA:', userData);
     const { username, email, password, category } = userData;
 
     if (!category) return toast.error('Add a category');
@@ -40,7 +40,9 @@ export const Apply = () => {
     register(username, email, password, category)
       .then((res) => {
         toast.success(res.data.message);
+        localStorage.setItem('authToken', res.data.data.token);
         setUserData(initialUserData);
+        navigate('/');
       })
       .catch((err) => {
         toast.error(err.response.data.message);

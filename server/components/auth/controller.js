@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import User from '../../models/User.js';
 import { customError } from '../../network/response.js';
 
@@ -31,10 +32,15 @@ export const register = (username, email, password, category) => {
         username,
         email,
         password,
-        category
+        category,
       });
 
-      resolve(user);
+      const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY);
+
+      const userResponse = { ...user._doc };
+      delete userResponse.password;
+
+      resolve({ user: userResponse, token });
     } catch (err) {
       reject(err);
     }
