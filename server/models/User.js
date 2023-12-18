@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
+  category: {
+    type: String,
+    required: [true, 'Please provide a category'],
+  },
 });
 
 const User = mongoose.model('users', userSchema);

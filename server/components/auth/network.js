@@ -17,9 +17,9 @@ authRouter.post('/login', (req, res) => {
 });
 
 authRouter.post('/register', (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, category } = req.body;
 
-  register(username, email, password)
+  register(username, email, password, category)
     .then((userData) => {
       return success(req, res, 201, 'User created successfully', userData);
     })

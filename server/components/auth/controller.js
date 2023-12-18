@@ -20,9 +20,9 @@ export const login = (email, password) => {
   });
 };
 
-export const register = (username, email, password) => {
+export const register = (username, email, password, category) => {
   return new Promise(async (resolve, reject) => {
-    if (!username || !email || !password) {
+    if (!username || !email || !password || !category) {
       reject(customError(400, 'Please provide the complete data'));
     }
 
@@ -31,6 +31,7 @@ export const register = (username, email, password) => {
         username,
         email,
         password,
+        category
       });
 
       resolve(user);
