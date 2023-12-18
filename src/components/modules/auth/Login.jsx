@@ -1,77 +1,84 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import useAuth from '../../../hooks/useAuth';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import styles from '../../../styles/apply.module.css';
 
 export const Login = () => {
-  const navigate = useNavigate();
-  const { login } = useAuth();
+  const initialUserData = {
+    email: '',
+    password: '',
+  };
+  const [userData, setUserData] = useState(initialUserData);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const handleData = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [name]: value,
+    }));
+  };
 
-  useEffect(() => {
-    if (localStorage.getItem('authToken')) {
-      navigate('/dashboard');
-    }
-  }, []);
-
-  const loginHandler = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-
-    login(email, password)
-      .then(({ data }) => {
-        localStorage.setItem('authToken', data.data.name);
-        navigate('/dashboard');
-      })
-      .catch((err) => {
-        setError(err.response.data.message);
-        setTimeout(() => {
-          setError('');
-        }, 5000);
-      });
+    console.log('DATA:', userData);
+    setUserData(initialUserData);
+    toast.success('Logged successfully');
   };
 
   return (
-    <div>
-      <form onSubmit={loginHandler}>
-        <h3>Login</h3>
-        {error && <span>{error}</span>}
-        <div>
-          <label htmlFor='email'>Email:</label>
-          <input
-            type='email'
-            required
-            id='email'
-            placeholder='Email address'
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            tabIndex={1}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password:</label>
-          <input
-            type='password'
-            required
-            id='password'
-            autoComplete='true'
-            placeholder='Enter password'
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            tabIndex={2}
-          />
-        </div>
-        <button type='submit' tabIndex={3}>
-          Login
-        </button>
+    <section
+      className={`${styles.background} min-h-screen flex justify-center items-center`}
+    >
+      <div className='main'>
+        <div className='content bg-white border-2 px-4 py-8 rounded-2xl shadow-lg'>
+          <h1 className='text-2xl font-bold text-center'>
+            You're now among top creators
+          </h1>
+          <p className='text-center'>Access your dashboard</p>
+          <p className='text-center py-5 font-bold text-gray-500'>
+            Start building your hub 👇
+          </p>
+          <form
+            onSubmit={handleLogin}
+            className='flex flex-col gap-4 text-lg mt-5'
+          >
+            <span className='flex flex-row shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
+              <img className='w-6 mr-2' src='/svgs/email.svg' alt='IG' />
+              <input
+                type='email'
+                name='email'
+                value={userData.email}
+                onChange={handleData}
+                placeholder='Enter your email'
+                className='focus:outline-none w-full'
+                required
+              />
+            </span>
 
-        <br />
+            <input
+              type='password'
+              name='password'
+              value={userData.password}
+              onChange={handleData}
+              placeholder='Set a password'
+              className='shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'
+              required
+            />
 
-        <span>
-          Don't have an account? <Link to='/register'>Register</Link>
-        </span>
-      </form>
-    </div>
+            <input
+              type='submit'
+              value='Login'
+              className='bg-indigo-600 text-white py-2 rounded-lg cursor-pointer'
+            />
+          </form>
+        </div>
+        <h4 className='text-center text-white pt-3'>
+          New here?
+          <Link to='/apply' className='font-bold text-red-400 ml-2'>
+            Apply
+          </Link>
+        </h4>
+      </div>
+    </section>
   );
 };
