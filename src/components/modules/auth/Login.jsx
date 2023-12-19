@@ -1,9 +1,13 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from '../../../styles/apply.module.css';
+import useAuth from '../../../hooks/useAuth';
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const initialUserData = {
     email: '',
     password: '',
@@ -20,9 +24,18 @@ export const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('DATA:', userData);
-    setUserData(initialUserData);
-    toast.success('Logged successfully');
+    const { email, password } = userData;
+
+    login(email, password)
+      .then((res) => {
+        toast.success(res.data.message);
+        localStorage.setItem('authToken', res.data.data.token);
+        setUserData(initialUserData);
+        navigate('/dashboard');
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
   };
 
   return (

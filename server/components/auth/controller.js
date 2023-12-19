@@ -9,12 +9,14 @@ export const login = (email, password) => {
     }
 
     try {
-      const user = await User.findOne({ email }).select('+password');
+      const user = await User.findOne({ email, password });
       if (!user) {
         reject(customError(401, 'Invalid credentials'));
       }
 
-      resolve({ name: 'Owen Lobato' });
+      const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY);
+
+      resolve({ user, token });
     } catch (err) {
       reject(customError(500, err.message));
     }
