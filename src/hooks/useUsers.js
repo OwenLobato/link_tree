@@ -1,8 +1,8 @@
 import { request } from '../utils/requests';
 
 const useUsers = (headers) => {
-  const getAllUsers = async () => {
-    return await request('GET', `/users/`, headers);
+  const getUser = async (username) => {
+    return await request('GET', `/users/${username}`, headers);
   };
 
   const getDashboardData = async () => {
@@ -10,7 +10,7 @@ const useUsers = (headers) => {
   };
 
   return {
-    getAllUsers,
+    getUser,
     getDashboardData,
   };
 };

@@ -1,12 +1,15 @@
-import { getAllUsers, getUserBy } from './store.js';
+import { findUserBy } from './store.js';
 import { customError } from '../../network/response.js';
 
-export const getUsers = () => {
+export const getUserDataBy = (key, value) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const allUsers = await getAllUsers();
+      const dbUser = await findUserBy(key, value);
+      if (!dbUser) {
+        reject(customError(401, 'User not found'));
+      }
 
-      resolve(allUsers);
+      resolve(dbUser);
     } catch (err) {
       reject(err);
     }
@@ -16,7 +19,7 @@ export const getUsers = () => {
 export const getDashboardData = (userId) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const dbUser = await getUserBy('_id', userId);
+      const dbUser = await findUserBy('_id', userId);
       if (!dbUser) {
         reject(customError(401, 'User not found'));
       }

@@ -10,7 +10,7 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getUserBy = async (key, value) => {
+export const findUserBy = async (key, value) => {
   try {
     const filter =
       key === '_id' ? { _id: objectIdConversor(value) } : { [key]: value };

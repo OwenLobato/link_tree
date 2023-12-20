@@ -1,24 +1,19 @@
 import express from 'express';
-import { getUsers, getDashboardData } from './controller.js';
+import { getUserDataBy, getDashboardData } from './controller.js';
 import { success, error } from '../../network/response.js';
 
 export const userRouter = express.Router();
 
-userRouter.get('/', (req, res) => {
-  getUsers()
+userRouter.get('/:username', (req, res) => {
+  const key = Object.keys(req.params)[0];
+  const value = req.params[key];
+
+  getUserDataBy(key, value)
     .then((userData) => {
-      return success(
-        req,
-        res,
-        200,
-        userData.length > 0
-          ? 'All users show successfully'
-          : 'No users on database',
-        userData
-      );
+      return success(req, res, 200, 'User obtained successfully', userData);
     })
     .catch((err) => {
-      return error(req, res, 500, 'Error getting all users', err);
+      return error(req, res, 500, 'Error getting user', err);
     });
 });
 
