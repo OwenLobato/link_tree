@@ -14,7 +14,16 @@ export const login = (email, password) => {
         reject(customError(401, 'Invalid credentials'));
       }
 
-      const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY);
+      const { _id, username } = user;
+
+      const token = jwt.sign(
+        {
+          _id,
+          username,
+          email,
+        },
+        process.env.JWT_SECRET_KEY
+      );
 
       resolve({ user, token });
     } catch (err) {
@@ -37,7 +46,14 @@ export const register = (username, email, password, category) => {
         category,
       });
 
-      const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY);
+      const token = jwt.sign(
+        {
+          _id: user._id,
+          username,
+          email,
+        },
+        process.env.JWT_SECRET_KEY
+      );
 
       const userResponse = { ...user._doc };
       delete userResponse.password;
