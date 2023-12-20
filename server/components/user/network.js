@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers } from './controller.js';
+import { getUsers, getDashboardData } from './controller.js';
 import { success, error } from '../../network/response.js';
 
 export const userRouter = express.Router();
@@ -19,5 +19,21 @@ userRouter.get('/', (req, res) => {
     })
     .catch((err) => {
       return error(req, res, 500, 'Error getting all users', err);
+    });
+});
+
+userRouter.get('/dashboard', (req, res) => {
+  getDashboardData(res.locals._id)
+    .then((userData) => {
+      return success(
+        req,
+        res,
+        200,
+        'User data successfully obtained',
+        userData
+      );
+    })
+    .catch((err) => {
+      return error(req, res, 500, 'Error getting user data', err);
     });
 });

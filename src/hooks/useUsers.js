@@ -5,8 +5,13 @@ const useUsers = (headers) => {
     return await request('GET', `/users/`, headers);
   };
 
+  const getDashboardData = async () => {
+    return await request('GET', `/users/dashboard`, headers);
+  };
+
   return {
     getAllUsers,
+    getDashboardData,
   };
 };
 

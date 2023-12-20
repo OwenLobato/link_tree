@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
+    default: 'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
   },
   username: {
     type: String,
