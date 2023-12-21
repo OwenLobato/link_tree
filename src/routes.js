@@ -1,4 +1,4 @@
-import { Login, Dashboard, Apply } from './components/modules';
+import { Login, Dashboard, Apply, LinkTree } from './components/modules';
 import { NotFoundPage } from './components/globals';
 
 export const PublicAppRoutes = [
@@ -7,4 +7,7 @@ export const PublicAppRoutes = [
   { path: '/apply', component: <Apply /> },
 ];
 
-export const AppRoutes = [{ path: '/dashboard', component: <Dashboard /> }];
+export const AppRoutes = [
+  { path: '/dashboard', component: <Dashboard /> },
+  { path: '/linkTree/:username', component: <LinkTree /> },
+];
