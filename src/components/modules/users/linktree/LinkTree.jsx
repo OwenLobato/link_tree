@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LinkCard } from '../../../../components/modules';
@@ -25,7 +25,7 @@ export const LinkTree = () => {
       });
   }, []);
 
-  return (
+  return Object.keys(userData).length > 0 ? (
     <section className='relative'>
       <img
         src={userData?.avatar}
@@ -58,5 +58,21 @@ export const LinkTree = () => {
         </AnimatePresence>
       </div>
     </section>
+  ) : (
+    <div className='flex justify-center items-center h-screen text-center'>
+      <div className='not-found px-3'>
+        <h1 className='font-bold text-lg mb-1'>User not found 😟</h1>
+        <p className='my-2'>
+          If you're looking for a page, double check the spelling.
+        </p>
+        Create your own
+        <Link
+          to={'/apply'}
+          className=' bg-indigo-600 px-2 ml-2 text-white hover:bg-indigo-400 transition-all duration-500'
+        >
+          LinkTree
+        </Link>
+      </div>
+    </div>
   );
 };
