@@ -88,6 +88,14 @@ export const NavBar = () => {
                   Apply
                 </Link>
               </li>
+              <li>
+                <Link
+                  to='/dashboard'
+                  className={getLinkClassName('/dashboard')}
+                >
+                  Dashboard
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

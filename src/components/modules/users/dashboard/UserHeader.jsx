@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { ORIGIN_URL } from '../linktree/ShareButton';
 
 export const UserHeader = ({ userData }) => {
   const navigate = useNavigate();
@@ -22,29 +23,31 @@ export const UserHeader = ({ userData }) => {
           Edit profile
         </button>
       </div>
-      <div className='flex flex-row'>
-        <div className='inline-flex mr-5 text-right items-center bg-gray-200 px-5 py-2 rounded-2xl'>
-          <div className='text-xs md:text-md flex flex-col flex-wrap'>
-            <span className='font-bold'>{username}</span>
-            <span>{category} pack</span>
+      <Link to={`${ORIGIN_URL}/linkTree/${username}`}>
+        <div className='flex flex-row'>
+          <div className='inline-flex mr-5 text-right items-center bg-gray-200 px-5 py-2 rounded-2xl'>
+            <div className='text-xs md:text-md flex flex-col flex-wrap'>
+              <span className='font-bold'>{username}</span>
+              <span>{category} pack</span>
+            </div>
+            <div className='user-img'>
+              <img src={avatar} alt='avatar' className='w-10 ml-5' />
+            </div>
           </div>
-          <div className='user-img'>
-            <img src={avatar} alt='avatar' className='w-10 ml-5' />
-          </div>
+          <img
+            src='/svgs/notification.svg'
+            alt=''
+            className='w-6 mr-5 cursor-pointer'
+            onClick={() => {}}
+          />
+          <img
+            src='/svgs/logout.svg'
+            alt=''
+            className='w-6 mr-5 cursor-pointer'
+            onClick={handleLogout}
+          />
         </div>
-        <img
-          src='/svgs/notification.svg'
-          alt=''
-          className='w-6 mr-5 cursor-pointer'
-          onClick={() => {}}
-        />
-        <img
-          src='/svgs/logout.svg'
-          alt=''
-          className='w-6 mr-5 cursor-pointer'
-          onClick={handleLogout}
-        />
-      </div>
+      </Link>
     </header>
   );
 };
