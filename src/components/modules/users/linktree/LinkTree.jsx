@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AnimatePresence, motion } from 'framer-motion';
-import { LinkCard } from '../../../../components/modules';
+import { LinkCard, SocialTree } from '../../../../components/modules';
 import useUsers from '../../../../hooks/useUsers';
 
 export const LinkTree = () => {
@@ -12,12 +12,14 @@ export const LinkTree = () => {
   });
 
   const [userData, setUserData] = useState({});
+  const [socials, setSocials] = useState([]);
 
   useEffect(() => {
     getUser(username)
       .then((res) => {
         console.log('User', res.data.data);
         setUserData(res.data.data);
+        setSocials(res.data.data.socialMedia);
       })
       .catch((err) => {
         console.log(err);
@@ -57,6 +59,7 @@ export const LinkTree = () => {
           ))}
         </AnimatePresence>
       </div>
+      <SocialTree socials={socials} />
     </section>
   ) : (
     <div className='flex justify-center items-center h-screen text-center'>
