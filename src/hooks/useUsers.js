@@ -2,7 +2,7 @@ import { request } from '../utils/requests';
 
 const useUsers = (headers) => {
   const getUser = async (username) => {
-    return await request('GET', `/users/${username}`, headers);
+    return await request('GET', `/users/linkTree/${username}`, headers);
   };
 
   const getDashboardData = async () => {

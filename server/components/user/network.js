@@ -4,7 +4,7 @@ import { success, error } from '../../network/response.js';
 
 export const userRouter = express.Router();
 
-userRouter.get('/:username', (req, res) => {
+userRouter.get('/linkTree/:username', (req, res) => {
   const key = Object.keys(req.params)[0];
   const value = req.params[key];
 
