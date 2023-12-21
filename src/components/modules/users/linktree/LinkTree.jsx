@@ -59,7 +59,7 @@ export const LinkTree = () => {
                 <LinkCard
                   title={link?.title}
                   url={link?.url}
-                  image={link?.image}
+                  icon={link?.icon}
                 />
               </motion.div>
             ))}
