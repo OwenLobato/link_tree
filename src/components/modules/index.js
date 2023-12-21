@@ -6,3 +6,4 @@ export * from './users/dashboard/UserHeader';
 export * from './users/linktree/LinkTree';
 export * from './users/linktree/LinkCard';
 export * from './users/linktree/SocialTree';
+export * from './users/linktree/ShareButton';
