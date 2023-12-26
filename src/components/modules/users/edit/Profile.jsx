@@ -7,8 +7,8 @@ import { toast } from 'react-toastify';
 
 export const Profile = () => {
   const { username } = useParams();
-  const { userData, setUserData } = useUserContext();
-  const { saveSocials } = useUsers({
+  const { userData } = useUserContext();
+  const { saveSocials, saveProfile } = useUsers({
     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
   });
 
@@ -54,6 +54,18 @@ export const Profile = () => {
       });
   };
 
+  const handleSaveProfile = (e) => {
+    e.preventDefault();
+
+    saveProfile(username, profileData)
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
   useEffect(() => {
     if (userData) {
       setProfileData((prevProfileData) => ({
@@ -83,7 +95,10 @@ export const Profile = () => {
           <div>
             <h4 className='font-bold text-center mb-5'>Edit profile</h4>
             <div>
-              <form className='flex flex-col justify-center items-center'>
+              <form
+                onSubmit={handleSaveProfile}
+                className='flex flex-col justify-center items-center'
+              >
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
                   <img className='w-6 mr-2' src='/svgs/user.svg' alt='IG' />
                   <input
@@ -127,7 +142,7 @@ export const Profile = () => {
                 </span>
 
                 <input
-                  type='button'
+                  type='submit'
                   value='save profile'
                   className='bg-green-500 w-32 px-4 py-2 rounded-md border-2 border-green-800 shadow-md cursor-pointer text-white'
                 />

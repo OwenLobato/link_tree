@@ -15,10 +15,17 @@ const useUsers = (headers) => {
     });
   };
 
+  const saveProfile = async (username, profile) => {
+    return await request('PUT', `/users/save/${username}/profile`, headers, {
+      data: profile,
+    });
+  };
+
   return {
     getUser,
     getDashboardData,
     saveSocials,
+    saveProfile,
   };
 };
 

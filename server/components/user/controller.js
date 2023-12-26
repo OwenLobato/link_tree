@@ -58,5 +58,25 @@ export const saveSocials = (username, socials) => {
   });
 };
 
+export const saveProfile = (username, profile) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const dbUser = await findUserBy('username', username);
+      if (!dbUser) {
+        reject(customError(401, 'User not found'));
+      }
+
+      dbUser.name = profile.name;
+      dbUser.bio = profile.bio;
+      dbUser.avatar = profile.avatar;
+      dbUser.save();
+
+      resolve(dbUser);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 const socialObjectToArray = (objeto) =>
   Object.entries(objeto).map(([clave, valor]) => ({ [clave]: valor }));
