@@ -1,5 +1,44 @@
 import mongoose from 'mongoose';
 
+const socialMediaSchema = new mongoose.Schema(
+  {
+    facebook: {
+      type: String,
+    },
+    twitter: {
+      type: String,
+    },
+    instagram: {
+      type: String,
+    },
+    youtube: {
+      type: String,
+    },
+    linkedIn: {
+      type: String,
+    },
+    gitHub: {
+      type: String,
+    },
+  },
+  { _id: false }
+);
+
+const linksSchema = new mongoose.Schema(
+  {
+    url: {
+      type: String,
+    },
+    title: {
+      type: String,
+    },
+    icon: {
+      type: String,
+    },
+  },
+  { _id: false }
+);
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -37,41 +76,8 @@ const userSchema = new mongoose.Schema({
     default: 'Creator',
     required: [true, 'Please provide a category'],
   },
-  links: [
-    {
-      url: {
-        type: String,
-      },
-      title: {
-        type: String,
-      },
-      icon: {
-        type: String,
-      },
-    },
-  ],
-  socialMedia: [
-    {
-      facebook: {
-        type: String,
-      },
-      twitter: {
-        type: String,
-      },
-      instagram: {
-        type: String,
-      },
-      youtube: {
-        type: String,
-      },
-      linkedIn: {
-        type: String,
-      },
-      gitHub: {
-        type: String,
-      },
-    },
-  ],
+  links: [linksSchema],
+  socialMedia: [socialMediaSchema],
 });
 
 const User = mongoose.model('users', userSchema);

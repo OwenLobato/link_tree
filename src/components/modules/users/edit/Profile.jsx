@@ -1,9 +1,17 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useUserContext } from '../../../../contexts/userContext';
 import { UserHeader } from '../dashboard/UserHeader';
+import useUsers from '../../../../hooks/useUsers';
+import { toast } from 'react-toastify';
 
 export const Profile = () => {
+  const { username } = useParams();
   const { userData, setUserData } = useUserContext();
+  const { saveSocials } = useUsers({
+    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+  });
+
   const [social, setSocial] = useState({
     facebook: '',
     twitter: '',
@@ -34,9 +42,16 @@ export const Profile = () => {
     }));
   };
 
-  const saveSocials = (e) => {
+  const handleSaveSocials = (e) => {
     e.preventDefault();
-    console.log(social);
+
+    saveSocials(username, social)
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
   };
 
   useEffect(() => {
@@ -46,6 +61,15 @@ export const Profile = () => {
         name: userData.name,
         bio: userData.bio,
         avatar: userData.avatar,
+      }));
+      setSocial((prevSocial) => ({
+        ...prevSocial,
+        facebook: userData?.socials?.[0]?.facebook || '',
+        twitter: userData?.socials?.[1]?.twitter || '',
+        instagram: userData?.socials?.[2]?.instagram || '',
+        youtube: userData?.socials?.[3]?.youtube || '',
+        linkedIn: userData?.socials?.[4]?.linkedIn || '',
+        gitHub: userData?.socials?.[5]?.gitHub || '',
       }));
     }
   }, [userData]);
@@ -113,17 +137,32 @@ export const Profile = () => {
 
           {/* EDIT LINKS */}
           <div className='mt-14'>
-            <h4 className='font-bold text-center mb-5'>Edit links</h4>
+            <h4 className='font-bold text-center mb-5'>Edit socials</h4>
             <div>
-              <form className='flex flex-col justify-center items-center'>
+              <form
+                onSubmit={handleSaveSocials}
+                className='flex flex-col justify-center items-center'
+              >
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
                   <img className='w-6 mr-2' src='/svgs/facebook.svg' alt='IG' />
                   <input
                     type='text'
                     name='facebook'
-                    value={profileData?.facebook}
+                    value={social?.facebook}
                     onChange={handleSocials}
                     placeholder='Enter facebook link'
+                    className='focus:outline-none w-full'
+                    required
+                  />
+                </span>
+                <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
+                  <img className='w-6 mr-2' src='/svgs/twitter.svg' alt='IG' />
+                  <input
+                    type='text'
+                    name='twitter'
+                    value={social?.twitter}
+                    onChange={handleSocials}
+                    placeholder='Enter twitter link'
                     className='focus:outline-none w-full'
                     required
                   />
@@ -137,7 +176,7 @@ export const Profile = () => {
                   <input
                     type='text'
                     name='instagram'
-                    value={profileData?.instagram}
+                    value={social?.instagram}
                     onChange={handleSocials}
                     placeholder='Enter instagram link'
                     className='focus:outline-none w-full'
@@ -145,13 +184,13 @@ export const Profile = () => {
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
-                  <img className='w-6 mr-2' src='/svgs/twitter.svg' alt='IG' />
+                  <img className='w-6 mr-2' src='/svgs/youtube.svg' alt='IG' />
                   <input
                     type='text'
-                    name='twitter'
-                    value={profileData?.twitter}
+                    name='youtube'
+                    value={social?.youtube}
                     onChange={handleSocials}
-                    placeholder='Enter twitter link'
+                    placeholder='Enter youtube link'
                     className='focus:outline-none w-full'
                     required
                   />
@@ -161,7 +200,7 @@ export const Profile = () => {
                   <input
                     type='text'
                     name='linkedIn'
-                    value={profileData?.linkedIn}
+                    value={social?.linkedIn}
                     onChange={handleSocials}
                     placeholder='Enter linkedIn link'
                     className='focus:outline-none w-full'
@@ -173,31 +212,18 @@ export const Profile = () => {
                   <input
                     type='text'
                     name='gitHub'
-                    value={profileData?.gitHub}
+                    value={social?.gitHub}
                     onChange={handleSocials}
                     placeholder='Enter gitHub link'
                     className='focus:outline-none w-full'
                     required
                   />
                 </span>
-                <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
-                  <img className='w-6 mr-2' src='/svgs/youtube.svg' alt='IG' />
-                  <input
-                    type='text'
-                    name='youtube'
-                    value={profileData?.youtube}
-                    onChange={handleSocials}
-                    placeholder='Enter youtube link'
-                    className='focus:outline-none w-full'
-                    required
-                  />
-                </span>
 
                 <input
-                  type='button'
-                  value='save profile'
-                  onClick={saveSocials}
-                  className='bg-green-500 w-32 px-4 py-2 rounded-md border-2 border-green-800 shadow-md cursor-pointer text-white'
+                  type='submit'
+                  value='save socials'
+                  className='bg-green-500 mb-10 w-32 px-4 py-2 rounded-md border-2 border-green-800 shadow-md cursor-pointer text-white'
                 />
               </form>
             </div>

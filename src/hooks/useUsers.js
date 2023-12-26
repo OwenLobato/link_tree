@@ -9,9 +9,16 @@ const useUsers = (headers) => {
     return await request('GET', `/users/dashboard`, headers);
   };
 
+  const saveSocials = async (username, socials) => {
+    return await request('POST', `/users/save/${username}/socials`, headers, {
+      data: socials,
+    });
+  };
+
   return {
     getUser,
     getDashboardData,
+    saveSocials,
   };
 };
 

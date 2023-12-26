@@ -17,6 +17,6 @@ export const PublicAppRoutes = [
 export const AppRoutes = [
   { path: '/dashboard', component: <Dashboard /> },
   { path: '/linkTree/:username', component: <LinkTree /> },
-  { path: '/edit/profile', component: <Profile /> },
-  { path: '/edit/links', component: <Links /> },
+  { path: '/edit/:username/profile', component: <Profile /> },
+  { path: '/edit/:username/links', component: <Links /> },
 ];

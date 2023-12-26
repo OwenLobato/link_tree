@@ -26,9 +26,11 @@ export const getDashboardData = (userId) => {
       const userData = {
         name: dbUser.name,
         category: dbUser.category,
+        bio: dbUser.bio,
         avatar: dbUser.avatar,
         username: dbUser.username,
         links: dbUser.links.length,
+        socials: dbUser.socialMedia,
       };
 
       resolve(userData);
@@ -37,3 +39,24 @@ export const getDashboardData = (userId) => {
     }
   });
 };
+
+export const saveSocials = (username, socials) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const dbUser = await findUserBy('username', username);
+      if (!dbUser) {
+        reject(customError(401, 'User not found'));
+      }
+
+      dbUser.socialMedia = socialObjectToArray(socials);
+      dbUser.save();
+
+      resolve(dbUser);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+const socialObjectToArray = (objeto) =>
+  Object.entries(objeto).map(([clave, valor]) => ({ [clave]: valor }));

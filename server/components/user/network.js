@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUserDataBy, getDashboardData } from './controller.js';
+import { getUserDataBy, getDashboardData, saveSocials } from './controller.js';
 import { success, error } from '../../network/response.js';
 
 export const userRouter = express.Router();
@@ -30,5 +30,15 @@ userRouter.get('/dashboard', (req, res) => {
     })
     .catch((err) => {
       return error(req, res, 500, 'Error getting user data', err);
+    });
+});
+
+userRouter.post('/save/:username/socials', (req, res) => {
+  saveSocials(req.params.username, req.body)
+    .then((userData) => {
+      return success(req, res, 200, 'User socials saved', userData);
+    })
+    .catch((err) => {
+      return error(req, res, 500, 'Error saving user socials', err);
     });
 });

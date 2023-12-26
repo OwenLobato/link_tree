@@ -33,13 +33,13 @@ export const UserHeader = () => {
   return (
     <header className='flex flex-row justify-between items-center'>
       <div className='flex flex-col md:flex-row p-5'>
-        <Link to={'/edit/links'}>
+        <Link to={`/edit/${userData.username}/links`}>
           <button className='inline-flex w-full md:w-auto px-5 py-3 text-purple-500 font-bold hover:text-purple-700 hover:bg-purple-100 rounded-md mb-3 border-2 border-purple-500'>
             <img src='/svgs/url.svg' alt='' className='w-6 mr-3' />
             Edit links
           </button>
         </Link>
-        <Link to={'/edit/profile'}>
+        <Link to={`/edit/${userData.username}/profile`}>
           <button className='inline-flex w-full md:w-auto px-5 py-3 text-red-500 font-bold hover:text-red-700 hover:bg-red-100 rounded-md mb-3 border-2 border-red-500 md:ml-4'>
             <img src='/svgs/user.svg' alt='' className='w-6 mr-3' />
             Edit profile
