@@ -1,30 +1,12 @@
-import { useState, useEffect } from 'react';
-import useUsers from '../../../../hooks/useUsers';
 import { LinkBox, UserHeader } from '../../../../components/modules';
-import { toast } from 'react-toastify';
+import { useUserContext } from '../../../../contexts/userContext';
 
 export const Dashboard = () => {
-  const { getDashboardData } = useUsers({
-    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-  });
-  const [userData, setUserData] = useState([]);
-
-  useEffect(() => {
-    getDashboardData()
-      .then(({ data }) => {
-        console.log(`User data:`, data.data);
-        setUserData(data.data);
-        toast.success(data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(err.response.data.message);
-      });
-  }, []);
+  const { userData } = useUserContext();
 
   return (
     <div className=''>
-      <UserHeader userData={userData} />
+      <UserHeader />
       <main>
         <section className='grid md:grid-cols-2 xl:grid-cols-4 gap-5'>
           <LinkBox

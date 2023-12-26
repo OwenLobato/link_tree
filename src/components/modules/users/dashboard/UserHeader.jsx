@@ -1,15 +1,34 @@
+import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ORIGIN_URL } from '../linktree/ShareButton';
+import useUsers from '../../../../hooks/useUsers';
+import { useUserContext } from '../../../../contexts/userContext';
+import { toast } from 'react-toastify';
 
-export const UserHeader = ({ userData }) => {
+export const UserHeader = () => {
   const navigate = useNavigate();
-
+  const { getDashboardData } = useUsers({
+    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+  });
+  const { userData, setUserData } = useUserContext();
   const { category, avatar, username } = userData;
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     navigate('/');
   };
+
+  useEffect(() => {
+    getDashboardData()
+      .then(({ data }) => {
+        setUserData(data.data);
+        toast.success(data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data.message);
+      });
+  }, []);
 
   return (
     <header className='flex flex-row justify-between items-center'>
