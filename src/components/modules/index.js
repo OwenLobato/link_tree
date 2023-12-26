@@ -7,3 +7,5 @@ export * from './users/linktree/LinkTree';
 export * from './users/linktree/LinkCard';
 export * from './users/linktree/SocialTree';
 export * from './users/linktree/ShareButton';
+export * from './users/edit/Profile';
+export * from './users/edit/Links';
