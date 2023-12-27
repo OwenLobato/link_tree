@@ -54,7 +54,11 @@ export const UserHeader = () => {
               <span>{category} pack</span>
             </div>
             <div className='user-img'>
-              <img src={avatar} alt='avatar' className='w-10 ml-5' />
+              <img
+                src={avatar}
+                alt='avatar'
+                className='w-10 ml-5 rounded-full'
+              />
             </div>
           </div>
           <img

@@ -78,5 +78,23 @@ export const saveProfile = (username, profile) => {
   });
 };
 
+export const saveLinks = (username, links) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const dbUser = await findUserBy('username', username);
+      if (!dbUser) {
+        reject(customError(401, 'User not found'));
+      }
+
+      dbUser.links = links;
+      dbUser.save();
+
+      resolve(dbUser);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 const socialObjectToArray = (objeto) =>
   Object.entries(objeto).map(([clave, valor]) => ({ [clave]: valor }));

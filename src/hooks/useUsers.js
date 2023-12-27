@@ -21,11 +21,18 @@ const useUsers = (headers) => {
     });
   };
 
+  const saveLinks = async (username, links) => {
+    return await request('PUT', `/users/save/${username}/links`, headers, {
+      data: links,
+    });
+  };
+
   return {
     getUser,
     getDashboardData,
     saveSocials,
     saveProfile,
+    saveLinks,
   };
 };
 
