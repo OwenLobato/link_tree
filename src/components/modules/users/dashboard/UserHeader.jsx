@@ -52,8 +52,8 @@ export const UserHeader = () => {
           </button>
         </Link>
       </div>
-      <Link to={`${ORIGIN_URL}/linkTree/${username}`}>
-        <div className='flex flex-row'>
+      <div className='flex flex-row'>
+        <Link to={`${ORIGIN_URL}/linkTree/${username}`}>
           <div className='inline-flex mr-5 text-right items-center bg-gray-200 px-5 py-2 rounded-2xl'>
             <div className='text-xs md:text-md flex flex-col flex-wrap'>
               <span className='font-bold'>{username}</span>
@@ -67,20 +67,22 @@ export const UserHeader = () => {
               />
             </div>
           </div>
-          <img
-            src='/svgs/notification.svg'
-            alt=''
-            className='w-6 mr-5 cursor-pointer'
-            onClick={() => {}}
-          />
-          <img
-            src='/svgs/logout.svg'
-            alt=''
-            className='w-6 mr-5 cursor-pointer'
-            onClick={handleLogout}
-          />
-        </div>
-      </Link>
+        </Link>
+
+        <img
+          src='/svgs/notification.svg'
+          alt=''
+          className='w-6 mr-5 cursor-pointer'
+          onClick={() => {}}
+        />
+
+        <img
+          src='/svgs/logout.svg'
+          alt=''
+          className='w-6 mr-5 cursor-pointer'
+          onClick={handleLogout}
+        />
+      </div>
     </header>
   );
 };
