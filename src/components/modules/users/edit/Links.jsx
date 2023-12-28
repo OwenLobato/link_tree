@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { UserHeader } from '../dashboard/UserHeader';
 import useUsers from '../../../../hooks/useUsers';
+import useLinkTree from '../../../../hooks/useLinkTree';
 import { toast } from 'react-toastify';
 
 export const Links = () => {
   const { username } = useParams();
-  const { getUser, saveLinks } = useUsers({
+  const { getLinkTreeByUser } = useLinkTree();
+  const { saveLinks } = useUsers({
     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
   });
 
@@ -44,7 +46,7 @@ export const Links = () => {
   };
 
   useEffect(() => {
-    getUser(username)
+    getLinkTreeByUser(username)
       .then((res) => {
         setLinks(res.data.data.links);
       })

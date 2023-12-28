@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import { authRouter, userRouter } from '../components/index.js';
+import { authRouter, userRouter, linkTreeRouter } from '../components/index.js';
 import { isAuthenticated } from '../middlewares/auth.js';
 
 config();
@@ -13,4 +13,8 @@ export const authRoutes = (app) => {
 
 export const userRoutes = (app) => {
   app.use(`${apiVersion}/users`, isAuthenticated, userRouter);
+};
+
+export const linkTreeRoutes = (app) => {
+  app.use(`${apiVersion}/linkTree`, linkTreeRouter);
 };

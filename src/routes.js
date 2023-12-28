@@ -12,11 +12,11 @@ export const PublicAppRoutes = [
   { path: '/*', component: <NotFoundPage /> },
   { path: '/', component: <Login /> },
   { path: '/apply', component: <Apply /> },
+  { path: '/linkTree/:username', component: <LinkTree /> },
 ];
 
 export const AppRoutes = [
   { path: '/dashboard', component: <Dashboard /> },
-  { path: '/linkTree/:username', component: <LinkTree /> },
   { path: '/edit/:username/profile', component: <Profile /> },
   { path: '/edit/:username/links', component: <Links /> },
 ];

@@ -7,19 +7,17 @@ import {
   SocialTree,
   ShareButton,
 } from '../../../../components/modules';
-import useUsers from '../../../../hooks/useUsers';
+import useLinkTree from '../../../../hooks/useLinkTree';
 
 export const LinkTree = () => {
   const { username } = useParams();
-  const { getUser } = useUsers({
-    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-  });
+  const { getLinkTreeByUser } = useLinkTree();
 
   const [userData, setUserData] = useState({});
   const [socials, setSocials] = useState([]);
 
   useEffect(() => {
-    getUser(username)
+    getLinkTreeByUser(username)
       .then((res) => {
         console.log('User', res.data.data);
         setUserData(res.data.data);
