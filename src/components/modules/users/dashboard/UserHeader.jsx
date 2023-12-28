@@ -31,7 +31,7 @@ export const UserHeader = () => {
   }, []);
 
   return (
-    <header className='flex flex-row justify-between items-center'>
+    <header className='flex flex-col-reverse md:flex-row justify-between items-center my-2 md:my-0'>
       <div className='flex flex-col md:flex-row p-5'>
         <Link to={`/edit/${userData.username}/links`}>
           <button className='inline-flex w-full md:w-auto px-5 py-3 text-purple-500 font-bold hover:text-purple-700 hover:bg-purple-100 rounded-md mb-3 border-2 border-purple-500'>
