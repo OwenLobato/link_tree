@@ -31,11 +31,22 @@ export const Apply = () => {
     }));
   };
 
+  const validateUsername = (username) => {
+    if (!username) return 'Enter a username';
+    if (username.length < 3)
+      return 'The username must be at least 3 characters';
+    if (username.includes(' ')) return 'Username must not have spaces';
+    if (!/^[a-zA-Z0-9-]+$/.test(username))
+      return 'Username must not have special characters, only "-"';
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
     const { username, email, password, category } = userData;
 
     if (!category) return toast.error('Add a category');
+    const isValidUsername = validateUsername(username);
+    if (isValidUsername) return toast.error(isValidUsername);
 
     register(username, email, password, category)
       .then((res) => {
@@ -67,7 +78,11 @@ export const Apply = () => {
             className='flex flex-col gap-4 text-lg mt-5'
           >
             <span className='flex flex-row shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
-              <img className='w-6 mr-2' src='/svgs/insta.svg' alt='IG' />
+              <img
+                className='w-6 mr-2'
+                src='/svgs/username.svg'
+                alt='username'
+              />
               <input
                 type='text'
                 name='username'
@@ -85,7 +100,7 @@ export const Apply = () => {
               onChange={handleData}
               placeholder='Enter your email'
               className='shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'
-              required
+              // required
             />
             <input
               type='password'
@@ -94,7 +109,7 @@ export const Apply = () => {
               onChange={handleData}
               placeholder='Set a password'
               className='shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'
-              required
+              // required
             />
 
             <h5 className='text-sm text-center text-indigo-400'>
