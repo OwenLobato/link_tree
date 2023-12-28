@@ -1,16 +1,25 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useUserContext } from '../../contexts/userContext';
 
 export const NavBar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { userData } = useUserContext();
   const location = useLocation();
+
+  const [isUserLogged, setIsUserLogged] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    setIsUserLogged(!!userData.username);
+  }, [userData]);
 
   const getLinkClassName = (path) =>
     `block py-2 pl-3 pr-4 rounded md:p-0 dark:text-white
@@ -33,6 +42,17 @@ export const NavBar = () => {
         dark:hover:text-white
         md:dark:hover:bg-transparent`
     }`;
+
+  const navBarLinks = [
+    { path: '/', label: 'LogIn', private: false },
+    { path: '/apply', label: 'Apply', private: false },
+    { path: '/dashboard', label: 'Dashboard', private: true },
+    {
+      path: `/linkTree/${userData.username}`,
+      label: 'My Link tree',
+      private: true,
+    },
+  ];
 
   return (
     <>
@@ -74,28 +94,18 @@ export const NavBar = () => {
             id='navbar-default'
           >
             <ul className='font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
-              <li>
-                <Link
-                  to='/'
-                  className={getLinkClassName('/')}
-                  aria-current='page'
-                >
-                  LogIn
-                </Link>
-              </li>
-              <li>
-                <Link to='/apply' className={getLinkClassName('/apply')}>
-                  Apply
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/dashboard'
-                  className={getLinkClassName('/dashboard')}
-                >
-                  Dashboard
-                </Link>
-              </li>
+              {navBarLinks.map((link, index) =>
+                link.private === isUserLogged ? (
+                  <li key={index}>
+                    <Link
+                      to={link.path}
+                      className={getLinkClassName(link.path)}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ) : null
+              )}
             </ul>
           </div>
         </div>

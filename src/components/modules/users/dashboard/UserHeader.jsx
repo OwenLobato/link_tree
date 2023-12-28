@@ -15,6 +15,13 @@ export const UserHeader = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
+    setUserData({
+      username: '',
+      name: '',
+      bio: '',
+      category: '',
+      avatar: '',
+    });
     navigate('/');
   };
 
