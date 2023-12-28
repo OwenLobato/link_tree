@@ -92,6 +92,18 @@ export const Links = () => {
                       className='outline-none border-2 border-gray-200 shadow-md rounded-md px-2 p-1 ml-2'
                     />
                   </label>
+                  <label>
+                    Icon:
+                    <input
+                      type='text'
+                      name='icon'
+                      value={link.icon}
+                      onChange={(e) =>
+                        handleLinkChange(index, 'icon', e.target.value)
+                      }
+                      className='outline-none border-2 border-gray-200 shadow-md rounded-md px-2 p-1 ml-2'
+                    />
+                  </label>
                   <button
                     type='button'
                     onClick={() => handleRemoveLink(index)}
