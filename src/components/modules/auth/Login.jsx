@@ -28,7 +28,6 @@ export const Login = () => {
 
     login(email, password)
       .then((res) => {
-        toast.success(res.data.message);
         localStorage.setItem('authToken', res.data.data.token);
         setUserData(initialUserData);
         navigate('/dashboard');

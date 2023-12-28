@@ -22,7 +22,6 @@ export const UserHeader = () => {
     getDashboardData()
       .then(({ data }) => {
         setUserData(data.data);
-        toast.success(data.message);
       })
       .catch((err) => {
         console.log(err);

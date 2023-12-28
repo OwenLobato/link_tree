@@ -46,7 +46,6 @@ export const Links = () => {
   useEffect(() => {
     getUser(username)
       .then((res) => {
-        toast.success(res.data.message);
         setLinks(res.data.data.links);
       })
       .catch((err) => {
