@@ -167,7 +167,6 @@ export const Profile = () => {
                     onChange={handleSocials}
                     placeholder='Enter facebook link'
                     className='focus:outline-none w-full'
-                    required
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
@@ -179,7 +178,6 @@ export const Profile = () => {
                     onChange={handleSocials}
                     placeholder='Enter twitter link'
                     className='focus:outline-none w-full'
-                    required
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
@@ -195,7 +193,6 @@ export const Profile = () => {
                     onChange={handleSocials}
                     placeholder='Enter instagram link'
                     className='focus:outline-none w-full'
-                    required
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
@@ -207,7 +204,6 @@ export const Profile = () => {
                     onChange={handleSocials}
                     placeholder='Enter youtube link'
                     className='focus:outline-none w-full'
-                    required
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
@@ -219,7 +215,6 @@ export const Profile = () => {
                     onChange={handleSocials}
                     placeholder='Enter linkedIn link'
                     className='focus:outline-none w-full'
-                    required
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
@@ -231,7 +226,6 @@ export const Profile = () => {
                     onChange={handleSocials}
                     placeholder='Enter gitHub link'
                     className='focus:outline-none w-full'
-                    required
                   />
                 </span>
 
