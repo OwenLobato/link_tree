@@ -3,14 +3,21 @@ import { toast } from 'react-toastify';
 
 export const ORIGIN_URL =
   process.env.REACT_APP_NODE_ENV === 'production'
-    ? process.env.REACT_APP_URL_PRODUCTION + '/#'
+    ? process.env.REACT_APP_URL_PRODUCTION
     : process.env.REACT_APP_URL;
 
 export const ShareButton = () => {
   const { username } = useParams();
 
   const copyLink = () => {
-    navigator.clipboard.writeText(`${ORIGIN_URL}/linkTree/${username}`);
+    let userLink = '';
+    if (process.env.REACT_APP_NODE_ENV === 'production') {
+      userLink = `${ORIGIN_URL}/#/linkTree/${username}`;
+    } else {
+      userLink = `${ORIGIN_URL}/linkTree/${username}`;
+    }
+    navigator.clipboard.writeText(userLink);
+
     toast('Copied to clipboard');
   };
 
