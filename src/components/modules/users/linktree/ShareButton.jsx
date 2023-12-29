@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 export const ORIGIN_URL =
   process.env.REACT_APP_NODE_ENV === 'production'
-    ? process.env.REACT_APP_URL_PRODUCTION
+    ? process.env.REACT_APP_URL_PRODUCTION + '/#'
     : process.env.REACT_APP_URL;
 
 export const ShareButton = () => {
