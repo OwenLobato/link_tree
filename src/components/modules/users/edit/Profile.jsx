@@ -159,7 +159,7 @@ export const Profile = () => {
                 className='flex flex-col justify-center items-center'
               >
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
-                  <img className='w-6 mr-2' src='/svgs/facebook.svg' alt='IG' />
+                  <img className='w-6 mr-2' src='/svgs/facebook.svg' alt='FB' />
                   <input
                     type='text'
                     name='facebook'
@@ -170,7 +170,7 @@ export const Profile = () => {
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
-                  <img className='w-6 mr-2' src='/svgs/twitter.svg' alt='IG' />
+                  <img className='w-6 mr-2' src='/svgs/twitter.svg' alt='TWT' />
                   <input
                     type='text'
                     name='twitter'
@@ -196,7 +196,7 @@ export const Profile = () => {
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
-                  <img className='w-6 mr-2' src='/svgs/youtube.svg' alt='IG' />
+                  <img className='w-6 mr-2' src='/svgs/youTube.svg' alt='YT' />
                   <input
                     type='text'
                     name='youtube'
@@ -207,7 +207,7 @@ export const Profile = () => {
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
-                  <img className='w-6 mr-2' src='/svgs/linkedIn.svg' alt='IG' />
+                  <img className='w-6 mr-2' src='/svgs/linkedIn.svg' alt='LI' />
                   <input
                     type='text'
                     name='linkedIn'
@@ -218,7 +218,7 @@ export const Profile = () => {
                   />
                 </span>
                 <span className='flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none'>
-                  <img className='w-6 mr-2' src='/svgs/gitHub.svg' alt='IG' />
+                  <img className='w-6 mr-2' src='/svgs/gitHub.svg' alt='GH' />
                   <input
                     type='text'
                     name='gitHub'
