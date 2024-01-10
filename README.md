@@ -109,31 +109,43 @@ The deployed back end is accessible at: [https://link-tree-api.onrender.com](htt
 ## Screen Examples
 
 - **LogIn**: [Screenshot of the LogIn form].  
-  ![LogIn](...)
+  ![LogIn](https://github.com/OwenLobato/link_tree/assets/74989360/d184ed61-f973-4fab-acac-788d2a6320e5)
+  ![Responsive LogIn](https://github.com/OwenLobato/link_tree/assets/74989360/b1e00548-7dd9-4d0d-ab07-b69d15b0836a)
 
 - **Apply**: [Screenshot of the Apply form].  
-  ![Apply](...)
+  ![Apply](https://github.com/OwenLobato/link_tree/assets/74989360/861ee873-c45e-4b6d-b3f0-7e081344c055)
+  ![Responsive Apply](https://github.com/OwenLobato/link_tree/assets/74989360/20998a52-da09-4f18-a341-4e3cf7d76c45)
 
 - **Page Not Found**: [Screenshot of the notice indicating that the selected route doesn't exist].  
-  ![PageNotFound](...)
+  ![PageNotFound](https://github.com/OwenLobato/link_tree/assets/74989360/564ac897-7504-43ee-8529-7bc99167a228)
+  ![Responsive PageNotFound](https://github.com/OwenLobato/link_tree/assets/74989360/a0f902c2-a3bb-488c-90f8-4fcaf121a0b4)
 
 - **Logged nav bar**: [Screenshot of the navbar when user is logged].  
-  ![LoggedNavBar](...)
+  ![LoggedNavBar](https://github.com/OwenLobato/link_tree/assets/74989360/0bde6425-fc3a-469a-82cd-faad03e70cdd)
+  ![Responsive LoggedNavBar](https://github.com/OwenLobato/link_tree/assets/74989360/e120e6e4-960e-4175-b97d-db23cc148a67)
 
 - **No logged nav bar**: [Screenshot of the navbar when user is not logged].  
-  ![NoLoggedNavBar](...)
+  ![NoLoggedNavBar](https://github.com/OwenLobato/link_tree/assets/74989360/c8d3773c-4da8-488e-a823-c52c64a53343)
+  ![Responsive NoLoggedNavBar](https://github.com/OwenLobato/link_tree/assets/74989360/0d2b095c-764a-4d59-acf8-ece04e784602)
 
 - **Dashboard**: [Screenshot of the user dashboard].  
-  ![Dashboard](...)
+  ![Dashboard](https://github.com/OwenLobato/link_tree/assets/74989360/cf0bcb29-73a5-4a0e-9778-32652d72c974)
+  ![Responsive Dashboard](https://github.com/OwenLobato/link_tree/assets/74989360/79a42808-7f43-40bc-8e76-73563b4912f3)
 
 - **Edit links**: [Screenshot of the links edition].  
-  ![EditLinks](...)
+  ![EditLinks](https://github.com/OwenLobato/link_tree/assets/74989360/b156e1b5-9ccc-4e6c-8d0f-cd09250ed367)
+  ![Responsive EditLinks](https://github.com/OwenLobato/link_tree/assets/74989360/301015a4-b6d2-48cb-8148-ff19cd7ffa6a)
 
 - **Edit profile**: [Screenshot of the profile edition].  
-  ![EditProfile](...)
+  ![EditProfile](https://github.com/OwenLobato/link_tree/assets/74989360/8f976081-7aca-4fb1-8a97-fdc901a0a78e)
+  ![Responsive EditProfile](https://github.com/OwenLobato/link_tree/assets/74989360/f7268d43-67a9-4a2a-b41c-7deb841def3b)
 
 - **Full link tree**: [Screenshot of the user link tree with data].  
-  ![FullLinkTree](...)
+  ![FullLinkTree](https://github.com/OwenLobato/link_tree/assets/74989360/d026c523-2a89-4289-aa6b-02e7fda4a817)
+  ![Responsive FullLinkTree](https://github.com/OwenLobato/link_tree/assets/74989360/321c6c9b-782e-4957-a5fa-c703c17017b4)
 
 - **Empty link tree**: [Screenshot of the user link tree without data].  
-  ![EmptyLinkTree](...)
+  ![EmptyLinkTree](https://github.com/OwenLobato/link_tree/assets/74989360/8caabb4c-1671-4710-925e-fe74ef0e57f8)
+  ![Responsive EmptyLinkTree](https://github.com/OwenLobato/link_tree/assets/74989360/bf211d58-06fb-4d18-8947-6dd7e0788232)
+
+
