@@ -10,21 +10,17 @@ export const ShareButton = () => {
   const { username } = useParams();
 
   const copyLink = () => {
-    let userLink = '';
-    if (process.env.REACT_APP_NODE_ENV === 'production') {
-      userLink = `${ORIGIN_URL}/#/linkTree/${username}`;
-    } else {
-      userLink = `${ORIGIN_URL}/linkTree/${username}`;
-    }
+    let userLink = `${ORIGIN_URL}/#/linkTree/${username}`;
     navigator.clipboard.writeText(userLink);
 
-    toast('Copied to clipboard');
+    toast(`Copied to clipboard, your link is: ${userLink}`);
   };
 
   return (
     <div
       onClick={copyLink}
       className='absolute cursor-pointer top-10 left-10 bg-indigo-200 p-2 rounded-md z-10 shadow-md border-2 border-indigo-400'
+      title='Copy link to clipboard'
     >
       <img src='/svgs/share.svg' alt='share' className='w-6' />
     </div>
