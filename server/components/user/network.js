@@ -5,6 +5,7 @@ import {
   saveProfile,
   saveLinks,
 } from './controller.js';
+import { customError } from '../../network/response.js';
 import { success, error } from '../../network/response.js';
 
 export const userRouter = express.Router();
@@ -26,6 +27,9 @@ userRouter.get('/dashboard', (req, res) => {
 });
 
 userRouter.post('/save/:username/socials', (req, res) => {
+  if (res.locals.username !== req.params.username)
+    return error(req, res, null, null, customError(401, 'Not authorized'));
+
   saveSocials(req.params.username, req.body)
     .then((userData) => {
       return success(req, res, 200, 'User socials saved', userData);
@@ -36,6 +40,9 @@ userRouter.post('/save/:username/socials', (req, res) => {
 });
 
 userRouter.put('/save/:username/profile', (req, res) => {
+  if (res.locals.username !== req.params.username)
+    return error(req, res, null, null, customError(401, 'Not authorized'));
+
   saveProfile(req.params.username, req.body)
     .then((userData) => {
       return success(req, res, 200, 'User profile saved', userData);
@@ -46,6 +53,9 @@ userRouter.put('/save/:username/profile', (req, res) => {
 });
 
 userRouter.put('/save/:username/links', (req, res) => {
+  if (res.locals.username !== req.params.username)
+    return error(req, res, null, null, customError(401, 'Not authorized'));
+
   saveLinks(req.params.username, req.body)
     .then((userData) => {
       return success(req, res, 200, 'User links saved', userData);
